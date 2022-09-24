@@ -21,12 +21,12 @@ def generate():
         eval_images, _ = G_ema([sample_z])
         for j in range(eval_images.shape[0]):
             jt.save_image(eval_images[j], 
-                      f'/mnt/disk/yuanlu/eval/FFHQ/{i*cfg.batch_size + j}.png',
+                      os.path.join(cfg.eval_path, f'{i*cfg.batch_size + j}.png'),
                       nrow=1,
                       normalize=True,
                       range=(-1, 1),
             )
-    run('python3.7 -m pytorch_fid /mnt/disk/yuanlu/eval/FFHQ_orig /mnt/disk/yuanlu/eval/FFHQ --device cuda:0'.split())
+    run(f'python3.7 -m pytorch_fid {cfg.data_path} {cfg.eval_path} --device cuda:0'.split())
     
     
 if __name__ == "__main__":

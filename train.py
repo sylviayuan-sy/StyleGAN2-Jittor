@@ -24,6 +24,7 @@ def get_config():
     parser = argparse.ArgumentParser(description="StyleGAN2 trainer")
 
     parser.add_argument("--data_path", type=str, default=None, help="path to the dataset")
+    parser.add_argument("--eval_path", type=str, default=None, help="path to the evaluation folder")
     parser.add_argument(
         "--epoch", type=int, default=None, help="total training epochs"
     )
